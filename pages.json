@@ -1,0 +1,60 @@
+{
+	// 主包
+	"pages": [{
+		"path": "pages/home/home",
+		"style": {}
+	}, {
+		"path": "pages/my/my",
+		"style": {}
+	}, {
+		"path": "pages/cart/cart",
+		"style": {}
+	}, {
+		"path": "pages/cate/cate",
+		"style": {}
+	}],
+	// 分包
+	"subPackages": [{
+		"root": "subpkg", // 分包的根目录
+		// 分包下总共有多少页面
+		"pages": [{
+                    "path" : "goods_detail/goods_detail",
+                    "style" : {}
+                }
+            ]
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "优购",
+		"navigationBarBackgroundColor": "#C00000",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"selectedColor": "#C00000", // 选中时的颜色
+		"list": [{
+				"pagePath": "pages/home/home",
+				"text": "首页",
+				"iconPath": "static/tab_icons/home.png", // 未被选中时的图标
+				"selectedIconPath": "static/tab_icons/home-active.png" // 被选中时的图标
+			},
+			{
+				"pagePath": "pages/cate/cate",
+				"text": "分类",
+				"iconPath": "static/tab_icons/cate.png",
+				"selectedIconPath": "static/tab_icons/cate-active.png"
+			},
+			{
+				"pagePath": "pages/cart/cart",
+				"text": "购物车",
+				"iconPath": "static/tab_icons/cart.png",
+				"selectedIconPath": "static/tab_icons/cart-active.png"
+			},
+			{
+				"pagePath": "pages/my/my",
+				"text": "我的",
+				"iconPath": "static/tab_icons/my.png",
+				"selectedIconPath": "static/tab_icons/my-active.png"
+			}
+		]
+	}
+}
