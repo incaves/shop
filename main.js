@@ -16,6 +16,14 @@ $http.beforeRequest = function(options) {
 $http.afterRequest = function () {
   uni.hideLoading() // 隐藏loading
 }
+// 封装的展示消息提示的方法(如果没有传递使用默认)
+uni.$showMsg = function (title = '数据加载失败！', duration = 1500) {
+  uni.showToast({
+    title,
+    duration,
+    icon: 'none',
+  })
+}
 Vue.config.productionTip = false
 
 App.mpType = 'app'
