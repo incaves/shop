@@ -1,64 +1,92 @@
 {
-	// 主包
-	"pages": [{
-		"path": "pages/home/home",
-		"style": {}
-	}, {
-		"path": "pages/my/my",
-		"style": {}
-	}, {
-		"path": "pages/cart/cart",
-		"style": {}
-	}, {
-		"path": "pages/cate/cate",
-		"style": {}
-	}],
-	// 分包
-	"subPackages": [{
-		"root": "subpkg", // 分包的根目录
-		// 分包下总共有多少页面
-		"pages": [{
-                    "path" : "goods_detail/goods_detail",
-                    "style" : {}
-                }
-                ,{
-                    "path" : "goods_list/goods_list",
-                    "style" : {}
-                }
-            ]
-	}],
-	"globalStyle": {
-		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "优购",
-		"navigationBarBackgroundColor": "#C00000",
-		"backgroundColor": "#FFFFFF"
-	},
-	"tabBar": {
-		"selectedColor": "#C00000", // 选中时的颜色
-		"list": [{
-				"pagePath": "pages/home/home",
-				"text": "首页",
-				"iconPath": "static/tab_icons/home.png", // 未被选中时的图标
-				"selectedIconPath": "static/tab_icons/home-active.png" // 被选中时的图标
-			},
-			{
-				"pagePath": "pages/cate/cate",
-				"text": "分类",
-				"iconPath": "static/tab_icons/cate.png",
-				"selectedIconPath": "static/tab_icons/cate-active.png"
-			},
-			{
-				"pagePath": "pages/cart/cart",
-				"text": "购物车",
-				"iconPath": "static/tab_icons/cart.png",
-				"selectedIconPath": "static/tab_icons/cart-active.png"
-			},
-			{
-				"pagePath": "pages/my/my",
-				"text": "我的",
-				"iconPath": "static/tab_icons/my.png",
-				"selectedIconPath": "static/tab_icons/my-active.png"
-			}
-		]
-	}
+  // 主包
+  "pages": [
+    {
+      "path": "pages/home/home",
+      "style": {}
+    },
+    {
+      "path": "pages/my/my",
+      "style": {}
+    },
+    {
+      "path": "pages/cart/cart",
+      "style": {}
+    },
+    {
+      "path": "pages/cate/cate",
+      "style": {}
+    }
+  ],
+  // 分包
+  "subPackages": [
+    {
+      "root": "subpkg", // 分包的根目录
+      // 分包下总共有多少页面
+      "pages": [
+        {
+          "path": "goods_detail/goods_detail",
+          "style": {}
+        },
+        {
+          "path": "goods_list/goods_list",
+          "style": {
+            "onReachBottomDistance": 150, // 页面配置上拉触底的距离
+            "enablePullDownRefresh": true, // 开启下拉刷新效果
+            "backgroundColor": "#F8F8F8" // 背景颜色
+          }
+        },
+        {
+          "path": "search/search",
+          "style": {}
+        }
+      ]
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "优购",
+    "navigationBarBackgroundColor": "#C00000",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "selectedColor": "#C00000", // 选中时的颜色
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "static/tab_icons/home.png", // 未被选中时的图标
+        "selectedIconPath": "static/tab_icons/home-active.png" // 被选中时的图标
+      },
+      {
+        "pagePath": "pages/cate/cate",
+        "text": "分类",
+        "iconPath": "static/tab_icons/cate.png",
+        "selectedIconPath": "static/tab_icons/cate-active.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "static/tab_icons/cart.png",
+        "selectedIconPath": "static/tab_icons/cart-active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/tab_icons/my.png",
+        "selectedIconPath": "static/tab_icons/my-active.png"
+      }
+    ]
+  },
+  "condition": {
+    //模式配置，仅开发期间生效
+    "current": 0, //当前激活的模式(list 的索引项)
+    "list": [
+      {
+        "name": "", //模式名称
+        "path": "", //启动页面，必选
+        "query": "" //启动参数，在页面的onLoad函数里面得到
+      }
+    ]
+  }
 }

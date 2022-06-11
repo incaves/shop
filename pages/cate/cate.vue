@@ -1,11 +1,12 @@
 <template>
 	<view>
+		<!-- 搜索组件自定义 -->
+		<my-search @clickSearch="gotoSearch"></my-search>
 		<view class="scroll-view-container">
 			<!-- 左侧商品名称滑动区域 -->
 			<scroll-view scroll-y="true" :style="{ height: wh + 'px' }" class="left-scroll-view">
 				<block v-for="(item, index) in cateList" :key="index">
-					<view :class="['left-scroll-view-item', index === active ? 'active' : '']" 
-					@click="activeChanged(index)">{{ item.cat_name }}</view>
+					<view :class="['left-scroll-view-item', index === active ? 'active' : '']" @click="activeChanged(index)">{{ item.cat_name }}</view>
 				</block>
 			</scroll-view>
 			<!-- 右侧商品名称滑动区域 -->
@@ -36,13 +37,15 @@ export default {
 			wh: 0, // 当前设备可以用的高度
 			cateList: [], // 分类列表数据
 			active: 0, // 默认激活项
-			cateLevel2: [] ,// 二级分类
+			cateLevel2: [], // 二级分类
 			scrollTop: 0 // 滚动条距离顶部的距离
 		};
 	},
 	onLoad() {
+		// 高度适配
 		const sysInfo = uni.getSystemInfoSync();
-		this.wh = sysInfo.windowHeight;
+		// 可用高度 = 屏幕高度 - navigationBar高度 - tabBar高度 - 自定义的search组件高度
+		this.wh = sysInfo.windowHeight - 50;
 		this.getCateList();
 	},
 	methods: {
@@ -56,20 +59,27 @@ export default {
 			// 区分二级分类
 			this.cateLevel2 = res.message[0].children;
 		},
-		// 选中项改变的事件处理函数
+		// 切换商品
 		activeChanged(index) {
 			this.active = index;
 			// 切换选中名称 重新获取二级分类数据
-			// this.cateList[index].children 切换项的数据 给到二级分类数组
+			// this.cateList[index].children根据索引获取到切换项的数据 给到二级分类数组
 			this.cateLevel2 = this.cateList[index].children;
-			// 解决滚动条问题(应该切换时,在最顶端)(来回1和0来回切换,如果直接赋值为0会有问题)
-			this.scrollTop = this.scrollTop === 0 ? 1 : 0
+			// 解决滚动条问题(应该切换时,在最顶端)(1和0来回切换,如果直接赋值为0会有问题,可能会有偏差)
+			this.scrollTop = this.scrollTop === 0 ? 1 : 0;
 		},
-        // 点击三级分类进行跳转
-		gotoGoodsList(item3){
-		  uni.navigateTo({
-		      url: '/subpkg/goods_list/goods_list?cid=' + item3.cat_id
-		   })
+		// 点击三级分类进行跳转
+		gotoGoodsList(item3) {
+			uni.navigateTo({
+				url: '/subpkg/goods_list/goods_list?cid=' + item3.cat_id
+			});
+		},
+		// 跳转到搜索组件
+		gotoSearch() {
+			// 跳转到分包中的Search组件
+			uni.navigateTo({
+				url: '/subpkg/search/search'
+			});
 		}
 	}
 };
@@ -112,24 +122,24 @@ export default {
 	padding: 15px 0;
 }
 .cate-lv3-list {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 
-  .cate-lv3-item {
-    width: 33.33%;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	.cate-lv3-item {
+		width: 33.33%;
+		margin-bottom: 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 
-    image {
-      width: 60px;
-      height: 60px;
-    }
+		image {
+			width: 60px;
+			height: 60px;
+		}
 
-    text {
-      font-size: 12px;
-    }
-  }
+		text {
+			font-size: 12px;
+		}
+	}
 }
 </style>
